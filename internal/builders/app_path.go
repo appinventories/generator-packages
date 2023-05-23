@@ -24,12 +24,13 @@ func AppPath(inputDir string, className string, outputFile string) error {
 			if !info.IsDir() {
 				tempPath := strings.TrimPrefix(path, inputDir)
 				constVariableList := strings.Split(tempPath, ".")
+				constVariableList = constVariableList[:len(constVariableList)-1]
 				constVariable := strings.Join(constVariableList, ".")
-				constVariable = strings.ReplaceAll(constVariable, "/", "_")
 				constVariable = strings.ReplaceAll(constVariable, ".", "_")
 				constVariable = strings.ReplaceAll(constVariable, "-", "_")
 				constVariable = strings.ReplaceAll(constVariable, " ", "_")
 				constVariable = strcase.LowerCamelCase(constVariable)
+				constVariable = strings.ReplaceAll(constVariable, "/", "_")
 				appPathTemps = append(appPathTemps, AppPathTemp{
 					ConstVariable: constVariable,
 					Value:         path,
