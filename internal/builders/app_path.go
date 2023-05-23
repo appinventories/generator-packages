@@ -22,8 +22,12 @@ func AppPath(inputDir string, className string, outputFile string) error {
 		func(path string, info os.FileInfo, err error) error {
 			if !info.IsDir() {
 				tempPath := strings.TrimPrefix(path, inputDir)
-				constVariable := strings.Split(tempPath, ".")[0]
+				constVariableList := strings.Split(tempPath, ".")
+				constVariable := strings.Join(constVariableList, ".")
 				constVariable = strings.ReplaceAll(constVariable, "/", "_")
+				constVariable = strings.ReplaceAll(constVariable, ".", "_")
+				constVariable = strings.ReplaceAll(constVariable, "-", "_")
+				constVariable = strings.ReplaceAll(constVariable, " ", "_")
 				appPathTemps = append(appPathTemps, AppPathTemp{
 					ConstVariable: constVariable,
 					Value:         path,
