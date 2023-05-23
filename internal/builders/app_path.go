@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/appinventories/generator-packages/util"
+	"github.com/stoewer/go-strcase"
 )
 
 func AppPath(inputDir string, className string, outputFile string) error {
@@ -28,6 +29,7 @@ func AppPath(inputDir string, className string, outputFile string) error {
 				constVariable = strings.ReplaceAll(constVariable, ".", "_")
 				constVariable = strings.ReplaceAll(constVariable, "-", "_")
 				constVariable = strings.ReplaceAll(constVariable, " ", "_")
+				constVariable = strcase.LowerCamelCase(constVariable)
 				appPathTemps = append(appPathTemps, AppPathTemp{
 					ConstVariable: constVariable,
 					Value:         path,
