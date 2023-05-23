@@ -1,10 +1,4 @@
 class AppSvgs {
-	static const bell = "_example/svg/bell.svg";
-	static const chevronDown = "_example/svg/chevronDown.svg";
-	static const chevronUP = "_example/svg/chevronUP.svg";
-	static const filter = "_example/svg/filter.svg";
-	static const hamberger = "_example/svg/hamberger.svg";
-	static const home = "_example/svg/home.svg";
 	static const inventory = "_example/svg/inventory.svg";
 	static const note = "_example/svg/note.svg";
 	static const people = "_example/svg/people.svg";
@@ -15,4 +9,10 @@ class AppSvgs {
 	static const shoppingCart = "_example/svg/shoppingCart.svg";
 	static const sort = "_example/svg/sort.svg";
 	static const team = "_example/svg/team.svg";
+	static const test_bell = "_example/svg/test/bell.svg";
+	static const test_chevronDown = "_example/svg/test/chevronDown.svg";
+	static const test_chevronUP = "_example/svg/test/chevronUP.svg";
+	static const test_filter = "_example/svg/test/filter.svg";
+	static const test_hamberger = "_example/svg/test/hamberger.svg";
+	static const test_home = "_example/svg/test/home.svg";
 }

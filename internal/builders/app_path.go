@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
 	"path/filepath"
 	"strings"
 
@@ -11,19 +12,27 @@ import (
 )
 
 func AppPath(inputDir string, className string, outputFile string) error {
-	files, err := ioutil.ReadDir(inputDir)
-	if err != nil {
-		log.Fatal(err)
-	}
+	inputDir = strings.Trim(inputDir, "./")
+	inputDir = strings.TrimRight(inputDir, "/")
+	inputDir += "/"
 
 	appPathTemps := []AppPathTemp{}
-	for _, file := range files {
-		constVariable := strings.Split(file.Name(), ".")[0]
-		value := filepath.Join(inputDir, file.Name())
-		appPathTemps = append(appPathTemps, AppPathTemp{
-			ConstVariable: constVariable,
-			Value:         value,
+
+	err := filepath.Walk(inputDir,
+		func(path string, info os.FileInfo, err error) error {
+			if !info.IsDir() {
+				tempPath := strings.TrimPrefix(path, inputDir)
+				constVariable := strings.Split(tempPath, ".")[0]
+				constVariable = strings.ReplaceAll(constVariable, "/", "_")
+				appPathTemps = append(appPathTemps, AppPathTemp{
+					ConstVariable: constVariable,
+					Value:         path,
+				})
+			}
+			return nil
 		})
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	resultStr, err := util.ExecuteTemplate(appPathTemps, fmt.Sprintf(appPathTemplateStr, className))
