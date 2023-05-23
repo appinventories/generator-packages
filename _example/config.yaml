@@ -1,0 +1,21 @@
+
+gen_locale_key_configs:
+  - input_dir: ./_example/translations
+    output_dir: ./_example/generator
+    namespace: LocalKeys
+  - input_dir: ./_example/error
+    output_dir: ./_example/generator
+    namespace: ErrorKeys
+
+csv_to_json_configs:
+  - input_path: ./_example/translations/translation_keys.csv
+    output_dir: ./_example/translations
+    key: t
+  - input_path: ./_example/error/error_keys.csv
+    output_dir: ./_example/error
+
+app_path_configs:
+  - class_name: AppSvgs
+    input_dir: ./_example/svg
+    output_file: ./_example/app_svgs.dart
+
