@@ -10,9 +10,10 @@ import (
 
 	"github.com/appinventories/generator-packages/util"
 	"github.com/stoewer/go-strcase"
+	"golang.org/x/exp/slices"
 )
 
-func AppPath(inputDir string, className string, outputFile string) error {
+func AppPath(inputDir string, className string, outputFile string, ignoreFiles []string) error {
 	inputDir = strings.Trim(inputDir, "./")
 	inputDir = strings.TrimRight(inputDir, "/")
 	inputDir += "/"
@@ -21,6 +22,9 @@ func AppPath(inputDir string, className string, outputFile string) error {
 
 	err := filepath.Walk(inputDir,
 		func(path string, info os.FileInfo, err error) error {
+			if slices.Contains(ignoreFiles, info.Name()) {
+				return nil
+			}
 			if !info.IsDir() {
 				tempPath := strings.TrimPrefix(path, inputDir)
 				constVariableList := strings.Split(tempPath, ".")

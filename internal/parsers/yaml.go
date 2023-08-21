@@ -19,7 +19,8 @@ type GenLocaleKeyConfig struct {
 }
 
 type AppPathConfig struct {
-	ClassName  string `yaml:"class_name"`
-	InputDir   string `yaml:"input_dir"`
-	OutputFile string `yaml:"output_file"`
+	ClassName   string   `yaml:"class_name"`
+	InputDir    string   `yaml:"input_dir"`
+	OutputFile  string   `yaml:"output_file"`
+	IgnoreFiles []string `yaml:"ignore_files,flow"`
 }

@@ -18,3 +18,5 @@ app_path_configs:
   - class_name: AppSvgs
     input_dir: ./_example/svg
     output_file: ./_example/app_svgs.dart
+    ignore_files:
+      - "inventory.svg"

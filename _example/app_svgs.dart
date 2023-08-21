@@ -1,5 +1,4 @@
 class AppSvgs {
-	static const inventory = "_example/svg/inventory.svg";
 	static const note = "_example/svg/note.svg";
 	static const people = "_example/svg/people.svg";
 	static const plus = "_example/svg/plus.svg";

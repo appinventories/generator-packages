@@ -15,6 +15,7 @@ func GenerateLocaleKey(cfgPath string) error {
 	if err != nil {
 		return err
 	}
+
 	for _, genLocaleKeyConfig := range conf.GenLocaleKeyConfigs {
 		jsonFilePaths, err := getJsonFilePath(genLocaleKeyConfig.InputDir)
 		if err != nil {
@@ -51,8 +52,9 @@ func AppPath(cfgPath string) error {
 	if err != nil {
 		return err
 	}
+
 	for _, appPathConfig := range conf.AppPathConfigs {
-		err = builders.AppPath(appPathConfig.InputDir, appPathConfig.ClassName, appPathConfig.OutputFile)
+		err = builders.AppPath(appPathConfig.InputDir, appPathConfig.ClassName, appPathConfig.OutputFile, appPathConfig.IgnoreFiles)
 	}
 	if err != nil {
 		return err
